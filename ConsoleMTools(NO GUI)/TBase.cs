@@ -34,6 +34,7 @@ namespace ConsoleMTools_NO_GUI_
 
                 Console.WriteLine("Please give the counter dataset sep. by commas");
                 sysmonCounterDataSet = Console.ReadLine();
+                runSysMonProcess();
 
             }
 
@@ -74,7 +75,8 @@ namespace ConsoleMTools_NO_GUI_
         {
 
             Process sysMonAProcess = new Process();
-            sysMonAProcess.StartInfo.FileName = "MTools + Jarvis.exe";
+            sysMonAProcess.StartInfo.FileName = "C:/Users/alexm/Documents/Visual Studio 2013/Projects/MTools + Jarvis/MTools + Jarvis/bin/Debug/MTools + Jarvis";
+            sysMonAProcess.Start();
 
         }  
 
