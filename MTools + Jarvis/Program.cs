@@ -22,6 +22,15 @@ namespace MTools___Jarvis
         //Where all the magic happens
         static void Main(string[] args)
         {
+            string dataset;
+            Console.WriteLine("How many counters would you like to use (CPU AND MEM only supp. right now)\n");
+            string c1Xcnum = Console.ReadLine();
+            Thread.Sleep(100);
+
+            Console.WriteLine("Please give the counter dataset sep. by commas");
+            dataset = Console.ReadLine();
+            
+            
             if (TBase.disableMon == false)
             {
                 #region perfCounters
@@ -54,8 +63,8 @@ namespace MTools___Jarvis
                     float currAvaMem = perfMemoryCount.NextValue();
 
                     //Searching the TBase.sysmonCounterDataSet for the counters
-                    bool sysmonData1 = Regex.IsMatch(TBase.sysmonCounterDataSet, "\bcpu\b");
-                    bool sysmonData2 = Regex.IsMatch(TBase.sysmonCounterDataSet, "\bmem\b");
+                    bool sysmonData1 = Regex.IsMatch(dataset, "\bcpu\b");
+                    bool sysmonData2 = Regex.IsMatch(dataset, "\bmem\b");
 
                     #region cpuCounter
                     if (sysmonData1 == true)
