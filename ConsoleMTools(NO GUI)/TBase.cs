@@ -22,7 +22,7 @@ namespace ConsoleMTools_NO_GUI_
         {
             openMain();
             
-            if (choice == "1")
+            if (choice == "1") //To run sysmon with alerts
             {
                 //Confirmation
                 Console.WriteLine("You chose to run sysmon with alerts. Are you sure? (y/n)");
@@ -37,7 +37,7 @@ namespace ConsoleMTools_NO_GUI_
 
             }
 
-            if (choice == "3")
+            if (choice == "3") //For running a plain old process
             {
                 Console.WriteLine("What process would you like to run(exe file)");
                 string processOpen = Console.ReadLine();
@@ -47,7 +47,7 @@ namespace ConsoleMTools_NO_GUI_
                 openMain();
             }
 
-            if (choice == "4")
+            if (choice == "4") // For running a process with a URL
             {
                 Console.WriteLine("Please enter the file you want to run: ");
                 string processOpen2 = Console.ReadLine();
