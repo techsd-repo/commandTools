@@ -64,7 +64,7 @@ namespace ConsoleMTools_NO_GUI_
             Process sysMonAProcess = new Process();
             sysMonAProcess.StartInfo.FileName = "MTools + Jarvis.exe";
 
-        }
+        } 
 
 
         //Function for running a process without a URL
