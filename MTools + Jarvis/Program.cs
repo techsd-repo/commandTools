@@ -61,29 +61,27 @@ namespace MTools___Jarvis
                     if (sysmonData1 == true)
                     {
                         //CPU update code here
+                        Console.WriteLine("CPU Load {0}%", currCpuPer);
+                        if (currCpuPer > 70)
+                        {
+                            //CPU 100
+                            if (currCpuPer == 100)
+                            {
+                                //Speak 100
+                                string cpuLoadVocal = String.Format("WARNING: Your CPU is about to catch fire!!");
+                                SpeakAPI(cpuLoadVocal, VoiceGender.Male, 3);
+                            }
+                            else
+                            {
+                                //Else: if cpuLoad > 70 speak current
+                                string cpuLoadVocal = String.Format("The current CPU load is {0}%", (int)currCpuPer);
+                                SpeakAPI(cpuLoadVocal, VoiceGender.Male, 2);
+                            }
                     }
 
                     if (sysmonData2 == true)
                     {
                         //Memory update code here
-                    }
-
-                    Console.WriteLine("CPU Load {0}%", currCpuPer);
-                    if (currCpuPer > 70)
-                    {
-                        //CPU 100
-                        if (currCpuPer == 100)
-                        {
-                            //Speak 100
-                            string cpuLoadVocal = String.Format("WARNING: Your CPU is about to catch fire!!");
-                            SpeakAPI(cpuLoadVocal, VoiceGender.Male, 3);
-                        }
-                        else
-                        {
-                            //Else: if cpuLoad > 70 speak current
-                            string cpuLoadVocal = String.Format("The current CPU load is {0}%", (int)currCpuPer);
-                            SpeakAPI(cpuLoadVocal, VoiceGender.Male, 2);
-                        }
 
                         //Memoy Handle
                         Console.WriteLine("Avail. Mem: {0}MB", currAvaMem);
@@ -109,6 +107,10 @@ namespace MTools___Jarvis
                         }
 
                     }
+                    }
+
+                   
+
                     Thread.Sleep(1000);
 
                 }//end of loop
