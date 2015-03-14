@@ -46,6 +46,18 @@ namespace ConsoleMTools_NO_GUI_
                 runProcessWithoutURLOpener(processOpen);
                 openMain();
             }
+
+            if (choice == "4")
+            {
+                Console.WriteLine("Please enter the file you want to run: ");
+                string processOpen2 = Console.ReadLine();
+                Console.WriteLine("Please enter the URL you want to use: ");
+                string processOpen2URL = Console.ReadLine();
+                Console.WriteLine("Opening " + processOpen2 + " with URL: " + processOpen2URL);
+                Thread.Sleep(200);
+                runProcessWithURL(processOpen2URL, processOpen2URL);
+               
+            }
         }
         public static void openMain() {
             //Opening
