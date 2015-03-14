@@ -60,6 +60,7 @@ namespace ConsoleMTools_NO_GUI_
         //Function to create a process and run sysmon
         public static void runSysMonProcess(string arg = null) //For alerts (impl later)
         {
+
             Process sysMonAProcess = new Process();
             sysMonAProcess.StartInfo.FileName = "MTools + Jarvis.exe";
 
