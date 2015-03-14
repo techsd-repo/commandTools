@@ -24,7 +24,7 @@ namespace MTools___Jarvis
         {
             if (TBase.disableMon == false)
             {
-                #region perfc
+                #region perfCounters
                 //m-cpu counter
                 PerformanceCounter perfCpuCount = new PerformanceCounter("Processor Information", "% Processor Time", "_Total");
                 perfCpuCount.NextValue();
@@ -36,9 +36,7 @@ namespace MTools___Jarvis
                 perfUptimeCount.NextValue();
                 #endregion
 
-               
-
-
+                #region uptimeIntro
                 SpeakAPI("Welcome to Jarvis one point oh!", VoiceGender.Male);
 
                 TimeSpan uptimeSpan = TimeSpan.FromSeconds(perfUptimeCount.NextValue());
@@ -48,6 +46,7 @@ namespace MTools___Jarvis
                     (int)uptimeSpan.Minutes,
                     (int)uptimeSpan.Seconds);
                 SpeakAPI(vocalUptime, VoiceGender.Male);
+                #endregion
 
                 while (true)
                 {
@@ -58,6 +57,7 @@ namespace MTools___Jarvis
                     bool sysmonData1 = Regex.IsMatch(TBase.sysmonCounterDataSet, "\bcpu\b");
                     bool sysmonData2 = Regex.IsMatch(TBase.sysmonCounterDataSet, "\bmem\b");
 
+                    #region cpuCounter
                     if (sysmonData1 == true)
                     {
                         //CPU update code here
@@ -77,9 +77,11 @@ namespace MTools___Jarvis
                                 string cpuLoadVocal = String.Format("The current CPU load is {0}%", (int)currCpuPer);
                                 SpeakAPI(cpuLoadVocal, VoiceGender.Male, 2);
                             }
-                    }
+                        }
+                    #endregion
 
-                    if (sysmonData2 == true)
+                        #region memCounter
+                        if (sysmonData2 == true)
                     {
                         //Memory update code here
 
@@ -107,12 +109,9 @@ namespace MTools___Jarvis
                         }
 
                     }
+                        #endregion
                     }
-
-                   
-
                     Thread.Sleep(1000);
-
                 }//end of loop
             }
         }
