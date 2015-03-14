@@ -74,6 +74,15 @@ namespace ConsoleMTools_NO_GUI_
             processWithoutURL.Start();
             
         }
+
+        public static void runProcessWithURL(string file, string url) {
+            Process processURL = new Process();
+            processURL.StartInfo.FileName = file;
+            processURL.StartInfo.Arguments = url;
+            processURL.Start();
+
+
+        }
     
     } // class
 } // namespace
