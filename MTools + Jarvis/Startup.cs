@@ -10,7 +10,7 @@ namespace MTools___Jarvis
     public static class Startup
     {
         public static string c1Xcnum;
-        public static string dataset;
+        public static string dataset = " ";
         public static string sysmonWithAlerts;
        
         public static void runStartup()

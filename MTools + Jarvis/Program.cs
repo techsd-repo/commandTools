@@ -26,13 +26,8 @@ namespace MTools___Jarvis
         //Where all the magic happens
         static void Main(string[] args)
         {
-            string dataset;
-            Console.WriteLine("How many counters would you like to use (CPU AND MEM only supp. right now)\n");
-            string c1Xcnum = Console.ReadLine();
-            Thread.Sleep(100);
-
-            Console.WriteLine("Please give the counter dataset sep. by commas");
-            dataset = Console.ReadLine();
+            Startup.runStartup();
+            string sDataset = Startup.dataset;
 
 
             if (true)
@@ -70,9 +65,9 @@ namespace MTools___Jarvis
                     float currDisk = perfDiskCount.NextValue();
 
                     //Searching the TBase.sysmonCounterDataSet for the counters
-                    bool sysmDatacpu = Regex.IsMatch(Startup.dataset, "cpu");
-                    bool sysmDatamem = Regex.IsMatch(Startup.dataset, "mem");
-                    bool sysmDataphydisk = Regex.IsMatch(Startup.dataset, "phydisk");
+                    bool sysmDatacpu = Regex.IsMatch(sDataset, "cpu");
+                    bool sysmDatamem = Regex.IsMatch(sDataset, "mem");
+                    bool sysmDataphydisk = Regex.IsMatch(sDataset, "phydisk");
 
                     bool sysmonAlerts = Regex.IsMatch(Startup.sysmonWithAlerts, "y");
 
