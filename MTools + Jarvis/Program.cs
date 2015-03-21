@@ -57,17 +57,19 @@ namespace MTools___Jarvis
                 {
                     float currCpuPer = perfCpuCount.NextValue();
                     float currAvaMem = perfMemoryCount.NextValue();
+                    float currDisk = perfDiskCount.NextValue();
                     
 
 
                     //Searching the Startup.dataset for the counters
-                    bool sysmonData1 = Regex.IsMatch(Startup.dataset, "\bcpu\b");
-                    bool sysmonData2 = Regex.IsMatch(Startup.dataset, "\bmem\b");
+                    bool sysmDatacpu = Regex.IsMatch(Startup.dataset, "\bcpu\b");
+                    bool sysmDatamem = Regex.IsMatch(Startup.dataset, "\bmem\b");
+                    bool sysmDataphydisk = Regex.IsMatch(Startup.dataset, "\bphydisk\b");
 
                     bool sysmonAlerts = Regex.IsMatch(Startup.sysmonWithAlerts, "\by\b");
 
                     #region cpuCounter
-                    if (sysmonData1 == true)
+                    if (sysmDatacpu == true)
                     {
                         //CPU update code here
                         Console.WriteLine("CPU Load {0}%", currCpuPer);
@@ -97,7 +99,7 @@ namespace MTools___Jarvis
                     #endregion
 
                         #region memCounter
-                        if (sysmonData2 == true)
+                        if (sysmDatamem == true)
                     {
                         //Memory update code here
 
@@ -116,6 +118,22 @@ namespace MTools___Jarvis
                         }
 
                     }
+                        #endregion
+
+                        #region Disk Counter
+                        //Logic
+
+                        if (sysmDataphydisk == true)
+                        {
+                            Console.WriteLine("Disk Usage: {0} bytes/sec", currDisk);
+
+                            if (currDisk > 475)
+                            {
+                                string phyDiskVocal = string.Format("Your current disk usage is {0} bytes per second", currDisk);
+                                SpeakAPI(phyDiskVocal, VoiceGender.Male, 2);
+                            }
+                        }
+                        
                         #endregion
                     }
                     Thread.Sleep(1000);
