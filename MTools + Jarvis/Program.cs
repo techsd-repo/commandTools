@@ -110,7 +110,6 @@ namespace MTools___Jarvis
                         if (sysmDatamem == true)
                         {
                             //Memory update code here
-
                             //Memoy Handle
                             Console.WriteLine("Avail. Mem: {0}MB\n", currAvaMem);
 
@@ -122,9 +121,7 @@ namespace MTools___Jarvis
                                     string memAvaVocal = String.Format("You have {0}Megabytes of memory", (int)currAvaMem);
                                     SpeakAPI(memAvaVocal, VoiceGender.Male, 2);
                                 }
-
                             }
-
                         }
                         #endregion
 
@@ -133,7 +130,6 @@ namespace MTools___Jarvis
 
                         if (sysmDataphydisk == true)
                         {
-
 
                             float finalC;
                             kbC = currDisk / 1024;
@@ -165,6 +161,10 @@ namespace MTools___Jarvis
                             SpeakAPI(statusMainM, VoiceGender.Male, 2);
                             Thread.Sleep(250);
                             SpeakAPI(statusUpdateCpuM, VoiceGender.Male, 2);
+                            Thread.Sleep(100);
+                            SpeakAPI(statusUpdateMemM, VoiceGender.Male, 2);
+                            Thread.Sleep(100);
+                            SpeakAPI(statusUpdatePdiskM, VoiceGender.Male, 2);
 
                             statusUpdateTickCounter = 0;
                         }
