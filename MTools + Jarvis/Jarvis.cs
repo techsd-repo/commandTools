@@ -16,7 +16,7 @@ using System.Text.RegularExpressions;
 namespace MTools___Jarvis
 {
    
-    public class Program
+    public class Jarvis
     {
 
         private static SpeechSynthesizer synth = new SpeechSynthesizer();
@@ -151,8 +151,8 @@ namespace MTools___Jarvis
                             string statusMainM = string.Format("This is a status update");
 
                             string statusUpdateCpuM = string.Format("The current CPU usage is {0}%", (int)currCpuPer);
-                            string statusUpdateMemM = string.Format("The current Memory usage is {0} MB", (int)currAvaMem);
-                            string statusUpdatePdiskM = string.Format("The current disk usage is {0} KB", (int)kbC);
+                            string statusUpdateMemM = string.Format("You have {0} Megabytes of memory", (int)currAvaMem);
+                            string statusUpdatePdiskM = string.Format("The current disk usage is {0} Kilobytes", (int)kbC);
                             SpeakAPI(statusMainM, VoiceGender.Male, 2);
                             Thread.Sleep(250);
                             SpeakAPI(statusUpdateCpuM, VoiceGender.Male, 2);
@@ -162,6 +162,10 @@ namespace MTools___Jarvis
                             SpeakAPI(statusUpdatePdiskM, VoiceGender.Male, 2);
 
                             statusUpdateTickCounter = 0;
+                        }
+                        else
+                        {
+                            statusUpdateTickCounter++;
                         }
                     }//end of loop
                 }

@@ -9,7 +9,7 @@ using System.Diagnostics;
 namespace ConsoleMTools_NO_GUI_
 {
      
-    public static class TBase
+    public static class ToolBase
     {
         
         public static string choice;
