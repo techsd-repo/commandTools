@@ -70,9 +70,9 @@ namespace MTools___Jarvis
                     float currDisk = perfDiskCount.NextValue();
 
                     //Searching the TBase.sysmonCounterDataSet for the counters
-                    bool sysmDatacpu = Regex.IsMatch(dataset, "cpu");
-                    bool sysmDatamem = Regex.IsMatch(dataset, "mem");
-                    bool sysmDataphydisk = Regex.IsMatch(dataset, "phydisk");
+                    bool sysmDatacpu = Regex.IsMatch(Startup.dataset, "cpu");
+                    bool sysmDatamem = Regex.IsMatch(Startup.dataset, "mem");
+                    bool sysmDataphydisk = Regex.IsMatch(Startup.dataset, "phydisk");
 
                     bool sysmonAlerts = Regex.IsMatch(Startup.sysmonWithAlerts, "y");
 
