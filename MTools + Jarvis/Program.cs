@@ -14,6 +14,7 @@ using System.Text.RegularExpressions;
 
 namespace MTools___Jarvis
 {
+   
     public class Program
     {
 
@@ -22,6 +23,7 @@ namespace MTools___Jarvis
         //Where all the magic happens
         static void Main(string[] args)
         {
+
             string dataset;
             Console.WriteLine("How many counters would you like to use (CPU AND MEM only supp. right now)\n");
             string c1Xcnum = Console.ReadLine();
@@ -29,7 +31,6 @@ namespace MTools___Jarvis
 
             Console.WriteLine("Please give the counter dataset sep. by commas");
             dataset = Console.ReadLine();
-            
             
             if (TBase.disableMon == false)
             {
