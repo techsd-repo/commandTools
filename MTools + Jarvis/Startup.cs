@@ -15,7 +15,7 @@ namespace MTools___Jarvis
        
         public static void runStartup()
         {
-            Console.WriteLine("How many counters would you like to use (CPU AND MEM only supp. right now)\n");
+            Console.WriteLine("How many counters would you like to use (cpu, mem, phydisk)\n");
             c1Xcnum = Console.ReadLine();
             Thread.Sleep(100);
 

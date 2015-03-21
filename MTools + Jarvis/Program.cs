@@ -25,7 +25,7 @@ namespace MTools___Jarvis
         static void Main(string[] args)
         {
             Startup.runStartup();           
-            if (TBase.disableMon == false)
+            if (true)
             {
                 #region perfCounters
                 //m-cpu counter
@@ -58,15 +58,13 @@ namespace MTools___Jarvis
                     float currCpuPer = perfCpuCount.NextValue();
                     float currAvaMem = perfMemoryCount.NextValue();
                     float currDisk = perfDiskCount.NextValue();
-                    
-
-
+              
                     //Searching the Startup.dataset for the counters
-                    bool sysmDatacpu = Regex.IsMatch(Startup.dataset, "\bcpu\b");
-                    bool sysmDatamem = Regex.IsMatch(Startup.dataset, "\bmem\b");
-                    bool sysmDataphydisk = Regex.IsMatch(Startup.dataset, "\bphydisk\b");
+                    bool sysmDatacpu = Regex.IsMatch(Startup.dataset, "cpu");
+                    bool sysmDatamem = Regex.IsMatch(Startup.dataset, "mem");
+                    bool sysmDataphydisk = Regex.IsMatch(Startup.dataset, "phydisk");
 
-                    bool sysmonAlerts = Regex.IsMatch(Startup.sysmonWithAlerts, "\by\b");
+                    bool sysmonAlerts = Regex.IsMatch(Startup.sysmonWithAlerts, "y");
 
                     #region cpuCounter
                     if (sysmDatacpu == true)
@@ -126,11 +124,14 @@ namespace MTools___Jarvis
                         if (sysmDataphydisk == true)
                         {
                             Console.WriteLine("Disk Usage: {0} bytes/sec", currDisk);
-
+                            if (currDisk > 5000)
+                            {
+                                //SpeakAPI("Your drive is about to catch fire!", VoiceGender.Female, 1);
+                            }
                             if (currDisk > 475)
                             {
-                                string phyDiskVocal = string.Format("Your current disk usage is {0} bytes per second", currDisk);
-                                SpeakAPI(phyDiskVocal, VoiceGender.Male, 2);
+                                string phyDiskVocal = string.Format("Your current disk usage is {0} bytes per second", (int)currDisk);
+                                //SpeakAPI(phyDiskVocal, VoiceGender.Male, 1);
                             }
                         }
                         
