@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Speech.Synthesis;
 using ConsoleMTools_NO_GUI_;
+using MTools___Jarvis;
 using System.Text.RegularExpressions;
 
 
@@ -23,15 +24,7 @@ namespace MTools___Jarvis
         //Where all the magic happens
         static void Main(string[] args)
         {
-
-            string dataset;
-            Console.WriteLine("How many counters would you like to use (CPU AND MEM only supp. right now)\n");
-            string c1Xcnum = Console.ReadLine();
-            Thread.Sleep(100);
-
-            Console.WriteLine("Please give the counter dataset sep. by commas");
-            dataset = Console.ReadLine();
-            
+            Startup.runStartup();           
             if (TBase.disableMon == false)
             {
                 #region perfCounters
@@ -44,6 +37,8 @@ namespace MTools___Jarvis
                 //m-uptime counter
                 PerformanceCounter perfUptimeCount = new PerformanceCounter("System", "System Up Time");
                 perfUptimeCount.NextValue();
+                PerformanceCounter perfDiskCount = new PerformanceCounter("PhysicalDisk", "Disk Bytes/sec", "_Total");
+                perfDiskCount.NextValue();
                 #endregion
 
                 #region uptimeIntro
@@ -62,10 +57,12 @@ namespace MTools___Jarvis
                 {
                     float currCpuPer = perfCpuCount.NextValue();
                     float currAvaMem = perfMemoryCount.NextValue();
+                    
 
-                    //Searching the TBase.sysmonCounterDataSet for the counters
-                    bool sysmonData1 = Regex.IsMatch(dataset, "\bcpu\b");
-                    bool sysmonData2 = Regex.IsMatch(dataset, "\bmem\b");
+
+                    //Searching the Startup.dataset for the counters
+                    bool sysmonData1 = Regex.IsMatch(Startup.dataset, "\bcpu\b");
+                    bool sysmonData2 = Regex.IsMatch(Startup.dataset, "\bmem\b");
 
                     #region cpuCounter
                     if (sysmonData1 == true)
