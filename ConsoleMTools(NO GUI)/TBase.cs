@@ -66,7 +66,7 @@ namespace ConsoleMTools_NO_GUI_
             Thread.Sleep(200);
             //test for version control
             //Options for Tools
-            Console.WriteLine("Choose what tool you need:\n 1) Run sysmon(with alerts)\n 2) Run sysmon (without alerts NOT AVAIL.)\n 3) Run a process\n 4) Run a browser witha URL\n 5) Run a strip down browser(with IE render)\n");
+            Console.WriteLine("Choose what tool you need:\n 1) Run sysmon\n 3) Run a process\n 4) Run a browser witha URL\n 5) Run a strip down browser(with IE render)\n");
             choice = Console.ReadLine();
         }
         
