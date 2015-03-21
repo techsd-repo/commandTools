@@ -11,7 +11,7 @@ namespace ConsoleMTools_NO_GUI_
      
     public static class TBase
     {
-        public static bool disableMon = false;
+        
         public static string choice;
         public static bool runSysMonWithAlerts; // Will impl. this later, not our focus right now
 

@@ -31,8 +31,8 @@ namespace MTools___Jarvis
             dataset = Console.ReadLine();
             
             
-            if (TBase.disableMon == false)
-            {
+            
+            
                 #region perfCounters
                 //m-cpu counter
                 PerformanceCounter perfCpuCount = new PerformanceCounter("Processor Information", "% Processor Time", "_Total");
@@ -63,8 +63,8 @@ namespace MTools___Jarvis
                     float currAvaMem = perfMemoryCount.NextValue();
 
                     //Searching the TBase.sysmonCounterDataSet for the counters
-                    bool sysmonData1 = Regex.IsMatch(dataset, "\bcpu\b");
-                    bool sysmonData2 = Regex.IsMatch(dataset, "\bmem\b");
+                    bool sysmonData1 = Regex.IsMatch(dataset, @"\bcpu\b");
+                    bool sysmonData2 = Regex.IsMatch(dataset, @"\bmem\b");
 
                     #region cpuCounter
                     if (sysmonData1 == true)
@@ -119,7 +119,7 @@ namespace MTools___Jarvis
 
                     }
                         #endregion
-                    }
+                    
                     Thread.Sleep(1000);
                 }//end of loop
             }
