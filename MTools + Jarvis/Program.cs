@@ -64,6 +64,8 @@ namespace MTools___Jarvis
                     bool sysmonData1 = Regex.IsMatch(Startup.dataset, "\bcpu\b");
                     bool sysmonData2 = Regex.IsMatch(Startup.dataset, "\bmem\b");
 
+                    bool sysmonAlerts = Regex.IsMatch(Startup.sysmonWithAlerts, "\by\b");
+
                     #region cpuCounter
                     if (sysmonData1 == true)
                     {
@@ -74,15 +76,22 @@ namespace MTools___Jarvis
                             //CPU 100
                             if (currCpuPer == 100)
                             {
-                                //Speak 100
-                                string cpuLoadVocal = String.Format("WARNING: Your CPU is about to catch fire!!");
-                                SpeakAPI(cpuLoadVocal, VoiceGender.Male, 3);
+                                if (sysmonAlerts == true)
+                                {
+                                    //Speak 100
+                                    string cpuLoadVocal = String.Format("WARNING: Your CPU is about to catch fire!!");
+                                    SpeakAPI(cpuLoadVocal, VoiceGender.Male, 3);
+                                }
+                                
                             }
                             else
                             {
-                                //Else: if cpuLoad > 70 speak current
+                                if (sysmonAlerts == true)
+                                {
+                                     //Else: if cpuLoad > 70 speak current
                                 string cpuLoadVocal = String.Format("The current CPU load is {0}%", (int)currCpuPer);
                                 SpeakAPI(cpuLoadVocal, VoiceGender.Male, 2);
+                                }
                             }
                         }
                     #endregion
@@ -96,23 +105,14 @@ namespace MTools___Jarvis
                         Console.WriteLine("Avail. Mem: {0}MB", currAvaMem);
                         Thread.Sleep(1000);
                         //Logic
-                        if (currCpuPer > 70)
-                        {
-                            if (currCpuPer == 100)
-                            {
-                                string cpuLoadVocal = String.Format("WARNING: Your CPU is about to catch fire!!");
-                                SpeakAPI(cpuLoadVocal, VoiceGender.Male, 3);
-                            }
-                            else
-                            {
-                                string cpuLoadVocal = String.Format("The current CPU load is {0}%", (int)currCpuPer);
-                                SpeakAPI(cpuLoadVocal, VoiceGender.Male, 2);
-                            }
-                        }
                         if (currAvaMem < 850)
                         {
-                            string memAvaVocal = String.Format("You have {0}Megabytes of memory ", (int)currAvaMem);
-                            SpeakAPI(memAvaVocal, VoiceGender.Male, 2);
+                            if (sysmonAlerts == true)
+                            {
+                                string memAvaVocal = String.Format("You have {0}Megabytes of memory ", (int)currAvaMem);
+                                SpeakAPI(memAvaVocal, VoiceGender.Male, 2);    
+                            }
+                            
                         }
 
                     }
