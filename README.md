@@ -10,4 +10,4 @@ Language: C#
 Tools:
 1. "sysmon"
 2. "Run a process"
-3. "Strip down browser, runs with the IE rundering engine"
+3. "Strip down browser, runs with the IE rendering engine"
