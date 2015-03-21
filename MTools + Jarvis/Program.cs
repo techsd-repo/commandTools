@@ -33,9 +33,9 @@ namespace MTools___Jarvis
 
             Console.WriteLine("Please give the counter dataset sep. by commas");
             dataset = Console.ReadLine();
-            
-            
-            if (TBase.disableMon == false)
+
+
+            if (true)
             {
                 #region perfCounters
                 //m-cpu counter
@@ -70,8 +70,9 @@ namespace MTools___Jarvis
                     float currDisk = perfDiskCount.NextValue();
 
                     //Searching the TBase.sysmonCounterDataSet for the counters
-                    bool sysmonData1 = Regex.IsMatch(dataset, "\bcpu\b");
-                    bool sysmonData2 = Regex.IsMatch(dataset, "\bmem\b");
+                    bool sysmDatacpu = Regex.IsMatch(dataset, "cpu");
+                    bool sysmDatamem = Regex.IsMatch(dataset, "mem");
+                    bool sysmDataphydisk = Regex.IsMatch(dataset, "phydisk");
 
                     bool sysmonAlerts = Regex.IsMatch(Startup.sysmonWithAlerts, "y");
 
@@ -87,44 +88,44 @@ namespace MTools___Jarvis
                             {
                                 if (sysmonAlerts == true)
                                 {
-                                //Speak 100
-                                string cpuLoadVocal = String.Format("WARNING: Your CPU is about to catch fire!!");
-                                SpeakAPI(cpuLoadVocal, VoiceGender.Male, 3);
-                            }
-                                
+                                    //Speak 100
+                                    string cpuLoadVocal = String.Format("WARNING: Your CPU is about to catch fire!!");
+                                    SpeakAPI(cpuLoadVocal, VoiceGender.Male, 3);
+                                }
+
                             }
                             else
                             {
                                 if (sysmonAlerts == true)
                                 {
-                                //Else: if cpuLoad > 70 speak current
-                                string cpuLoadVocal = String.Format("The current CPU load is {0}%", (int)currCpuPer);
-                                SpeakAPI(cpuLoadVocal, VoiceGender.Male, 2);
+                                    //Else: if cpuLoad > 70 speak current
+                                    string cpuLoadVocal = String.Format("The current CPU load is {0}%", (int)currCpuPer);
+                                    SpeakAPI(cpuLoadVocal, VoiceGender.Male, 2);
+                                }
                             }
-                        }
                         }
                     #endregion
 
                         #region memCounter
                         if (sysmDatamem == true)
-                    {
-                        //Memory update code here
-
-                        //Memoy Handle
-                        Console.WriteLine("Avail. Mem: {0}MB\n", currAvaMem);
-                        
-                        //Logic
-                        if (currAvaMem < 850)
                         {
-                            if (sysmonAlerts == true)
+                            //Memory update code here
+
+                            //Memoy Handle
+                            Console.WriteLine("Avail. Mem: {0}MB\n", currAvaMem);
+
+                            //Logic
+                            if (currAvaMem < 850)
                             {
-                                string memAvaVocal = String.Format("You have {0}Megabytes of memory", (int)currAvaMem);
-                                SpeakAPI(memAvaVocal, VoiceGender.Male, 2);    
-                            }
-                            
-                        }
+                                if (sysmonAlerts == true)
+                                {
+                                    string memAvaVocal = String.Format("You have {0}Megabytes of memory", (int)currAvaMem);
+                                    SpeakAPI(memAvaVocal, VoiceGender.Male, 2);
+                                }
 
                             }
+
+                        }
                         #endregion
 
                         #region Disk Counter
@@ -133,7 +134,7 @@ namespace MTools___Jarvis
                         if (sysmDataphydisk == true)
                         {
 
-                            
+
                             float finalC;
                             kbC = currDisk / 1024;
                             finalC = kbC / 1024;
@@ -142,32 +143,33 @@ namespace MTools___Jarvis
                             if (currDisk > 50000)
                             {
                                 //SpeakAPI("Your drive is about to catch fire!", VoiceGender.Female, 1);
-                        }
+                            }
                             if (currDisk > 475)
-                        {
+                            {
                                 string phyDiskVocal = string.Format("Your current disk usage is {0} bytes per second", (int)currDisk);
                                 //SpeakAPI(phyDiskVocal, VoiceGender.Male, 1);
                             }
                         }
 
                         #endregion
-                    
-                    Thread.Sleep(1000);
-                    Console.Clear();
-                    if (statusUpdateTickCounter == 60)
-                    {
-                        string statusMainM = string.Format("This is a status update");
-                        
-                      string statusUpdateCpuM = string.Format("The current CPU usage is {0}%", (int)currCpuPer);
-                      string statusUpdateMemM = string.Format("The current Memory usage is {0} MB", (int)currAvaMem);
-                      string statusUpdatePdiskM = string.Format("The current disk usage is {0} KB", (int)kbC);
-                      SpeakAPI(statusMainM, VoiceGender.Male, 2);
-                        Thread.Sleep(250);
-                        SpeakAPI(statusUpdateCpuM, VoiceGender.Male, 2);
-                          
-                        statusUpdateTickCounter = 0;
-                    }
-                }//end of loop
+
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                        if (statusUpdateTickCounter == 60)
+                        {
+                            string statusMainM = string.Format("This is a status update");
+
+                            string statusUpdateCpuM = string.Format("The current CPU usage is {0}%", (int)currCpuPer);
+                            string statusUpdateMemM = string.Format("The current Memory usage is {0} MB", (int)currAvaMem);
+                            string statusUpdatePdiskM = string.Format("The current disk usage is {0} KB", (int)kbC);
+                            SpeakAPI(statusMainM, VoiceGender.Male, 2);
+                            Thread.Sleep(250);
+                            SpeakAPI(statusUpdateCpuM, VoiceGender.Male, 2);
+
+                            statusUpdateTickCounter = 0;
+                        }
+                    }//end of loop
+                }
             }
         }
         #region functions
